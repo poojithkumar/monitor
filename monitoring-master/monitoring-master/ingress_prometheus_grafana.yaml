@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: premetheus-grafana-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /prometheus
+          backend:
+            serviceName: prometheus
+            servicePort: 32322
+        - path: /alertmanager
+          backend:
+            serviceName: alertmanager
+            servicePort: 32323
